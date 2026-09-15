@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 160">
+<rect width="600" height="160" rx="32" fill="#0b1220"/>
+<circle cx="82" cy="80" r="52" fill="#2563eb"/>
+<path d="M57 78l18 18 35-39" fill="none" stroke="white" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="155" y="72" font-family="Arial, sans-serif" font-size="42" font-weight="800" fill="white">NDOUR</text>
+<text x="155" y="116" font-family="Arial, sans-serif" font-size="38" font-weight="700" fill="#60a5fa">TERANGA</text>
+</svg>

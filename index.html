@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Plateforme de formation numérique NDOUR TERANGA">
+<meta name="theme-color" content="#2563eb"><link rel="manifest" href="manifest.json"><link rel="stylesheet" href="styles.css">
+<title>NDOUR TERANGA — Formation Numérique</title>
+</head>
+<body>
+<header><div class="container nav">
+<a class="brand" href="#accueil"><img src="assets/logo.svg" alt="NDOUR TERANGA"><span>NDOUR TERANGA</span></a>
+<nav class="navlinks"><button onclick="showPage('home')">Accueil</button><button onclick="showPage('courses')">Formations</button><button onclick="showPage('about')">À propos</button><button onclick="showPage('login')">Connexion</button></nav>
+<button class="btn btn-primary" onclick="showPage('courses')">Commencer</button>
+</div></header>
+
+<main id="app">
+<section id="home" class="page">
+<div class="hero"><div class="container hero-grid">
+<div><span class="eyebrow">FORMATION 100% EN LIGNE • SANS VIDÉO</span><h1>Apprends le numérique, étape par étape.</h1>
+<p>Une plateforme pensée pour les débutants : cours clairs, exercices pratiques, quiz, progression et certificat.</p>
+<div class="hero-actions"><button class="btn btn-primary" onclick="showPage('courses')">Voir les cours</button><button class="btn btn-soft" onclick="showPage('about')">Découvrir la méthode</button></div></div>
+<div><img class="hero-img" src="assets/hero-formateur.png" alt="Espace de formation numérique"></div>
+</div></div>
+
+<section><div class="container"><div class="section-head"><div><h2>Un parcours complet</h2><p>Du tout débutant jusqu'à un projet numérique concret.</p></div></div>
+<div class="grid">
+<div class="card"><div class="icon">💻</div><h3>Ordinateur</h3><p>Comprendre l'ordinateur, le clavier, la souris, les fichiers et les applications.</p></div>
+<div class="card"><div class="icon">📄</div><h3>Bureautique</h3><p>Word, Excel et PowerPoint avec des exercices directement applicables.</p></div>
+<div class="card"><div class="icon">🌐</div><h3>Internet & sécurité</h3><p>Recherche, e-mail, stockage, mots de passe et prévention contre les arnaques.</p></div>
+<div class="card"><div class="icon">🧩</div><h3>Création web</h3><p>Découvrir HTML et CSS et construire une première page web.</p></div>
+<div class="card"><div class="icon">🚀</div><h3>Compétences pro</h3><p>CV, documents professionnels, communication numérique et mini-projet.</p></div>
+<div class="card"><div class="icon">🏆</div><h3>Progression & certificat</h3><p>Valide les modules et retrouve ta progression dans ton espace étudiant.</p></div>
+</div></div></section>
+
+<section><div class="container about"><img class="portrait" src="assets/photo-formateur.jpg" alt="Photo du formateur">
+<div><span class="eyebrow">VOTRE FORMATEUR</span><h2>Une méthode simple et pratique</h2><p>Chaque leçon suit une logique claire : objectif, explication simple, étapes, exemple, exercice, correction puis quiz.</p>
+<ul class="checks"><li>Explications adaptées aux débutants</li><li>Exercices après chaque notion importante</li><li>Quiz avec correction et score</li><li>Suivi de progression dans l'espace étudiant</li><li>Certificat de fin de parcours</li></ul>
+<button class="btn btn-primary" onclick="showPage('courses')">Commencer la formation</button></div></div></section>
+</section>
+
+<section id="courses" class="page hidden"><div class="container"><div class="section-head"><div><h2>Mes formations</h2><p>Choisis un module et avance à ton rythme.</p></div></div><div id="courseList" class="grid"></div></div></section>
+
+<section id="lessonPage" class="page hidden"><div class="container"><button class="btn btn-soft" onclick="showPage('courses')">← Retour aux formations</button><div id="lessonContent"></div></div></section>
+
+<section id="about" class="page hidden"><div class="container"><div class="about"><img class="portrait" src="assets/photo-formateur.jpg" alt="Formateur"><div><span class="eyebrow">NDOUR TERANGA</span><h2>Formation numérique accessible</h2><p>La plateforme est conçue pour apprendre en pratiquant, sans dépendre de longues vidéos. Les notions sont découpées en petites étapes faciles à suivre.</p><p><strong>Objectif :</strong> permettre à chaque étudiant de progresser, pratiquer et construire des compétences utiles.</p></div></div></div></section>
+
+<section id="login" class="page hidden"><div class="container auth"><div class="authbox"><h2>Connexion étudiant</h2><p style="color:#64748b">Entre tes informations pour ouvrir ton espace.</p>
+<div class="field"><label>Nom</label><input id="loginName" placeholder="Ton nom"></div><div class="field"><label>E-mail</label><input id="loginEmail" type="email" placeholder="ton@email.com"></div>
+<button class="btn btn-primary" style="width:100%" onclick="login()">Ouvrir mon espace</button><p style="font-size:12px;color:#94a3b8;margin-top:15px">Pour la version en ligne avec comptes réels, une base de données et un serveur seront nécessaires.</p>
+</div></div></section>
+
+<section id="student" class="page hidden"><div class="container"><div class="section-head"><div><h2 id="welcome">Mon espace</h2><p>Ton tableau de bord d'apprentissage.</p></div><button class="btn btn-soft" onclick="logout()">Déconnexion</button></div>
+<div class="dashboard"><aside class="side"><button class="active" onclick="studentTab('dashboard',this)">📊 Tableau de bord</button><button onclick="studentTab('lessons',this)">📚 Mes cours</button><button onclick="studentTab('quiz',this)">🧠 Quiz</button><button onclick="studentTab('certificate',this)">🏆 Certificat</button></aside>
+<div id="studentContent"></div></div></div></section>
+
+<section id="admin" class="page hidden"><div class="container"><div class="section-head"><div><h2>Administration</h2><p>Gestion locale de contenu pour préparer la plateforme.</p></div></div><div class="notice">Cette version fonctionne côté navigateur. Pour une vraie administration multi-utilisateur en ligne, il faudra connecter une base de données et une authentification serveur.</div><div id="adminContent"></div></div></section>
+</main>
+
+<footer><div class="container footer-grid"><div><div class="footer-title">NDOUR TERANGA</div><div>Formation & compétences numériques.</div></div><div><div class="footer-title">Plateforme</div><div>Formations<br>Exercices<br>Quiz<br>Certificats</div></div><div><div class="footer-title">Accès</div><div>Étudiant<br>Administration</div></div></div></footer>
+<script src="app.js"></script>
+</body></html>
