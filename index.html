@@ -3,68 +3,76 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ndour Teranga Formation - Parcours</title>
+<title>Ndour Teranga - Cours complets</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#f5f6f8}
-.header{display:flex;justify-content:space-between;padding:15px 5%;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.1);position:sticky;top:0}
-.logo{font-weight:900;color:#ff6b00;display:flex;align-items:center;gap:10px}
-.logo img{height:35px}
-.hero{display:flex;flex-wrap:wrap;padding:30px 5%;background:linear-gradient(135deg,#fff7ed,#e0f2fe);gap:20px;align-items:center}
-.hero h1{font-size:28px}.hero h1 span{color:#ff6b00}
-.hero img{width:220px;height:220px;object-fit:cover;border-radius:15px;border:4px solid #fff}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:15px;padding:20px 5%}
-.card{background:#fff;padding:15px;border-radius:12px;box-shadow:0 3px 10px rgba(0,0,0,.08);border-left:5px solid #ff6b00;cursor:pointer}
-.card:hover{transform:translateY(-3px)}
-.count{background:#fff7ed;color:#ff6b00;padding:3px 8px;border-radius:10px;font-size:12px;font-weight:700}
-.progress{height:6px;background:#eee;border-radius:10px;margin-top:8px;overflow:hidden}
-.progress div{height:100%;background:#00c950}
-.modal{display:none;position:fixed;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,.5);z-index:99}
-.modal-content{background:#fff;margin:5% auto;padding:20px;width:90%;max-width:600px;border-radius:12px;max-height:80vh;overflow:auto}
-.ex{display:flex;gap:10px;padding:8px;border-bottom:1px solid #eee}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{background:#f5f6f8} .header{display:flex;justify-content:space-between;padding:12px 5%;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.1);position:sticky;top:0;z-index:10}
+.logo{display:flex;gap:8px;align-items:center;font-weight:900;color:#ff6b00} .logo img{height:32px}
+.hero{background:linear-gradient(135deg,#fff7ed,#dbeafe);padding:20px 5%;display:flex;flex-wrap:wrap;gap:15px;align-items:center}
+.hero h1{font-size:24px} .hero h1 span{color:#ff6b00} .hero img{width:160px;height:160px;object-fit:cover;border-radius:12px;border:3px solid #fff}
+.container{padding:10px 5%} .section{margin:20px 0} .section h2{background:#111;color:#fff;padding:10px 12px;border-radius:8px;font-size:16px;display:flex;justify-content:space-between}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin-top:10px}
+.card{background:#fff;border-radius:10px;padding:12px;box-shadow:0 2px 6px rgba(0,0,0,.06);border-left:5px solid #ff6b00;cursor:pointer}
+.progress{height:5px;background:#eee;border-radius:10px;margin-top:6px;overflow:hidden} .progress div{height:100%;background:#00c950}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:50;overflow:auto} .modal-box{background:#fff;margin:3% auto;padding:16px;width:95%;max-width:680px;border-radius:12px;max-height:90vh;overflow:auto}
+.lesson{background:#f9fafb;border:1px solid #eee;border-radius:8px;padding:8px;margin:6px 0} .lesson h4{color:#ff6b00;font-size:13px}
 </style>
 </head>
 <body>
-<div class="header"><div class="logo"><img src="assets/logo.svg" onerror="this.src='logo.svg'"> NDOUR TERANGA</div><div>📞 +221 77 123 45 67</div></div>
-<div class="hero"><div><h1>Plateforme de Formation <span>comme Clic-Formation</span></h1><p>6 Parcours - 72 Exercices - Progression sauvegardée</p><p style="margin-top:10px">🖱️ Souris ⌨️ Clavier 📁 Fichiers 🌐 Internet 📝 Word 📊 Excel</p></div><img src="assets/photo-formateur.jpg" onerror="this.src='photo-formateur.jpg'"></div>
-<h2 style="text-align:center;margin-top:20px">Parcours d'auto-formation libre d'accès</h2>
-<div class="grid" id="grid"></div>
-<div id="modal" class="modal"><div class="modal-content"><span onclick="modal.style.display='none'" style="float:right;font-size:28px;cursor:pointer">&times;</span><h3 id="mtitle"></h3><div id="mlist"></div></div></div>
+<div class="header"><div class="logo"><img src="assets/logo.svg" onerror="this.style.display='none'"> NDOUR TERANGA</div><div style="font-size:11px">📞 Dakar +221 77 123 45 67</div></div>
+<div class="hero"><div style="flex:1;min-width:240px"><h1>Plateforme Formation <span>comme Clic-Formation</span></h1><p style="font-size:13px;margin:6px 0">6 Parcours - 96 Lecons - Progression sauvegardee - Tout Clic-Formation dedans</p></div><img src="assets/photo-formateur.jpg" onerror="this.style.display='none'"></div>
+<div class="container" id="main"></div>
+<div id="modal" class="modal"><div class="modal-box"><span style="float:right;font-size:24px;cursor:pointer" onclick="modal.style.display='none'">&times;</span><h3 id="mtitle"></h3><div id="mlist"></div></div></div>
 <script>
-const parcours=[
-{id:'souris',t:'Débutant - Souris',c:12,i:'🖱️',d:'12 exercices souris',ex:['Simple clic','Double clic','Clic droit','Glisser-déposer','Sélection','Molette','Précision 1','Précision 2','Labyrinthe','Tri icônes','Puzzle','Examen']},
-{id:'clavier',t:'Clavier Niveau 1',c:12,i:'⌨️',d:'12 exercices clavier AZERTY',ex:['Lettres','Majuscules','Chiffres','Accents','Ponctuation','@ et €','Ctrl+C/V','Mot','Phrase','Vitesse 1','Vitesse 2','Test']},
-{id:'fichiers',t:'Fichiers & Dossiers',c:12,i:'📁',d:'Créer, déplacer, ranger',ex:['Créer dossier','Renommer','Copier','Couper','Corbeille','Rechercher','Zip','Clé USB','Explorateur','Arborescence','Propriétés','Rangement']},
-{id:'internet',t:'Internet & Mail',c:12,i:'🌐',d:'Recherche et messagerie',ex:['Google','Onglets','Historique','Favoris','Télécharger','Sécurité','Créer email','Pièce jointe','Répondre','Spam','Astuces','Test']},
-{id:'word',t:'WORD',c:15,i:'📝',d:'Initiation Word 1-3',ex:['Saisie','Mise en forme','Police','Alignement','Puces','Tableau','Image','En-tête','Sauvegarde','CV','Lettre','Mise en page','Table matières','Fusion','Examen']},
-{id:'excel',t:'EXCEL',c:12,i:'📊',d:'450 ex avec corrigés',ex:['Cellules','Somme','Moyenne','Si','Mise en forme cond','Tri','Filtre','Graphique','TCD','RechercheV','Budget','Examen']}
+const DATA=[
+{cat:"ORDINATEUR DEBUTANT",modules:[
+{id:"ordi",title:"Mon Ordinateur",icon:"💻",desc:"12 lecons",L:["1. Elements ordinateur - UC, ecran, clavier, souris","2. Allumer eteindre correctement","3. Bureau Windows - icones, corbeille","4. Menu Demarrer - lancer programme","5. Barre des taches - epingler, basculer","6. Icones - creer, deplacer raccourci","7. Fenetres - ouvrir fermer agrandir reduire deplacer","8. Ecrans resolution pixels - regler taille","9. Bonne position travail - posture lumiere","10. Synthese Ordinateur","11. Quiz 20 questions","12. Memo PDF recap"]},
+{id:"souris",title:"Souris Debutant",icon:"🖱️",desc:"15 ex pratiques",L:["1. Prise en main pouce annulaire","2. Pointer deplacer fleche","3. Simple clic selectionner","4. Double clic ouvrir","5. Clic droit menu contextuel","6. Glisser-deposer maintenir et deplacer","7. Selection multiple","8. Molette faire defiler","9. Ctrl+molette zoom","10. Clic molette defilement auto","11. Precision cibles qui bougent","12. Labyrinthe sans toucher murs","13. Tri fichiers dans bons dossiers","14. Puzzle glisser-deposer","15. Examen souris 80%"]}
+]},
+{cat:"CLAVIER FRAPPE",modules:[
+{id:"clavier",title:"Clavier AZERTY",icon:"⌨️",desc:"18 lecons",L:["1. Minuscules Majuscules Verr Maj Shift","2. Pave numerique Verr Num","3. Lettres sans regarder a q s d f","4. Symboles @ # € AltGr","5. Accents e e a c ^","6. Touches F1-F12 aide actualiser","7. Raccourcis Ctrl+C V X Z","8. Ctrl+A tout select Alt+Tab Windows+D","9. Chiffres haut Shift+1","10. Ponctuation . , ; : ! ?","11. MOT teranga 10x sans faute","12. PHRASE Bonjour Dakar Maj","13. Vitesse 20 mots/min","14. Vitesse 35 mots/min","15. Test AZERTY doigts","16. @ et € email prix","17. Dictee ecouter taper","18. Examen 95% precision"]}
+]},
+{cat:"FICHIERS DOSSIERS",modules:[
+{id:"fichiers",title:"Fichiers & Dossiers",icon:"📁",desc:"15 lecons",L:["1. C'est quoi fichier dossier .docx .xlsx .jpg","2. Explorateur Windows volet navigation","3. Creer dossier 'Formation Dakar'","4. Renommer F2","5. Copier Coller Ctrl+C V garder original","6. Couper Coller Ctrl+X V deplacer","7. Supprimer Corbeille restaurer vider","8. Rechercher loupe *.pdf date","9. Compresser ZIP Envoyer vers","10. Cle USB retirer en securite","11. Proprietes taille type date","12. Arborescence C: Users Documents","13. Raccourci vers Bureau","14. Trier par nom date taille","15. Rangement final 30 fichiers 5 dossiers"]}
+]},
+{cat:"INTERNET MAIL",modules:[
+{id:"internet",title:"Internet & Mail",icon:"🌐",desc:"14 lecons",L:["1. Navigateur Chrome Firefox barre adresse","2. Google guillemets -mot formation Dakar","3. Onglets Ctrl+T W Tab","4. Historique Ctrl+H effacer","5. Favoris Ctrl+D organiser","6. Telecharger dossier Telechargements antivirus","7. Securite https cadenas phishing mot passe 12 car","8. Creer email Gmail verification","9. Envoyer mail A Objet PJ","10. Repondre Transferer Repondre a tous","11. Gerer mails dossiers spam recherche","12. Drive Cloud Google Drive OneDrive","13. Astuces Ctrl+F imprimer PDF","14. Examen mail avec PJ + recherche Google"]}
+]},
+{cat:"WORD",modules:[
+{id:"word",title:"WORD Initiation 1-3",icon:"📝",desc:"18 lecons",L:["1. Interface Ruban Accueil Insertion","2. Saisie curseur Entree Backspace","3. Enregistrer Ctrl+S docx","4. Gras Ctrl+G Italique I Souligne U","5. Police taille couleur surlignage","6. Alignement gauche centre droite justifie interligne 1.5","7. Puces Numeros liste","8. Tableau Insertion 3x4 bordures fusion","9. Image Insertion habillage taille","10. En-tete Pied page numero","11. Correcteur rouge bleu","12. Mise en page marges A4 portrait paysage","13. Exercice CV Dakar tableau photo","14. Lettre motivation en-tete date objet","15. Table matieres Titres Style1 2","16. Publipostage fusion lettre + Excel","17. Imprimer PDF Ctrl+P","18. Examen 2 pages 45min"]}
+]},
+{cat:"EXCEL",modules:[
+{id:"excel",title:"EXCEL 450 ex corriges",icon:"📊",desc:"18 lecons",L:["1. Interface Cellule A1 feuille classeur =","2. Saisie texte nombre date € %","3. Formule =A1+B1 SOMME MOYENNE","4. Recopie + $A$1 absolue","5. Mise en forme bordures € date %","6. Fonction SI =SI(A1>10;OK;Non)","7. Tri Filtre A-Z filtre auto","8. Graphique histogramme courbe secteur","9. Mise forme conditionnelle >100 vert","10. RechercheV =RECHERCHEV","11. TCD resumer ventes ville","12. Budget Famille Dakar revenus depenses =SOMME","13. Planning =AUJOURDHUI jours restants","14. Facture qte*prix HT TVA 18% TTC SI remise","15. Stock alerte =SI(stock<5;Commander;OK)","16. Cas Petits Porteurs suivi portefeuille ombrage gris pied page Ass. Les Petits Porteurs","17. Impression zone en-tete paysage 1 page","18. Examen Cas 1h Budget Graph TCD"]}
+]}
 ];
-function getP(){return JSON.parse(localStorage.getItem('ndour')||'{}')}
-function saveP(p){localStorage.setItem('ndour',JSON.stringify(p))}
+function getP(){return JSON.parse(localStorage.getItem('ndourV4')||'{}')}
+function saveP(p){localStorage.setItem('ndourV4',JSON.stringify(p))}
 function render(){
-let g=document.getElementById('grid');let prog=getP();g.innerHTML='';
-parcours.forEach(p=>{
-let done=(prog[p.id]||[]).length;let pct=Math.round(done/p.c*100);
-let div=document.createElement('div');div.className='card';
-div.innerHTML=`<div style="font-size:36px">${p.i}</div><h3>${p.t}</h3><span class="count">${done}/${p.c}</span><p style="font-size:13px;color:#666;margin:6px 0">${p.d}</p><div class="progress"><div style="width:${pct}%"></div></div><small>${pct}%</small>`;
-div.onclick=()=>openM(p);g.appendChild(div);
-});
+ const main=document.getElementById('main'); main.innerHTML='';
+ DATA.forEach(sec=>{
+  let s=document.createElement('div'); s.className='section';
+  let total=0,done=0; sec.modules.forEach(m=>{total+=m.L.length; done+=(getP()[m.id]||[]).length});
+  let pct=total?Math.round(done/total*100):0;
+  s.innerHTML=`<h2>${sec.cat} <span>${done}/${total} ${pct}%</span></h2><div class="grid"></div>`;
+  main.appendChild(s); let grid=s.querySelector('.grid');
+  sec.modules.forEach(mod=>{
+   let d=(getP()[mod.id]||[]).length; let p=Math.round(d/mod.L.length*100);
+   let c=document.createElement('div'); c.className='card'; c.innerHTML=`<div style="font-size:28px">${mod.icon}</div><h3>${mod.title}</h3><small>${mod.desc}</small><br><small style="background:#fff7ed;color:#ff6b00;padding:2px 6px;border-radius:8px;font-weight:700">${d}/${mod.L.length}</small> <small>${p}%</small><div class="progress"><div style="width:${p}%"></div></div>`;
+   c.onclick=()=>openM(mod); grid.appendChild(c);
+  });
+ });
 }
-function openM(p){
-let prog=getP();let set=new Set(prog[p.id]||[]);
-document.getElementById('mtitle').innerText=p.t;
-let l=document.getElementById('mlist');l.innerHTML='';
-p.ex.forEach((e,i)=>{
-let d=document.createElement('div');d.className='ex';
-d.innerHTML=`<input type="checkbox" ${set.has(i)?'checked':''}><span>${i+1}. ${e}</span><span style="margin-left:auto;color:#ff6b00">Faire →</span>`;
-d.querySelector('input').onchange=(ev)=>{
-let cur=getP();if(!cur[p.id])cur[p.id]=[];
-if(ev.target.checked){if(!cur[p.id].includes(i))cur[p.id].push(i)}else cur[p.id]=cur[p.id].filter(x=>x!=i);
-saveP(cur);render();
-};
-l.appendChild(d);
-});
-document.getElementById('modal').style.display='block';
+function openM(mod){
+ const set=new Set((getP()[mod.id]||[]));
+ document.getElementById('mtitle').innerText=mod.icon+' '+mod.title;
+ let list=document.getElementById('mlist'); list.innerHTML='';
+ mod.L.forEach((t,i)=>{
+  let div=document.createElement('div'); div.className='lesson';
+  div.innerHTML=`<label style="display:flex;gap:6px;cursor:pointer"><input type="checkbox" ${set.has(i)?'checked':''}><div><b>Lecon ${i+1}</b><div style="font-size:12px">${t}</div></div></label>`;
+  div.querySelector('input').onchange=(e)=>{let cur=getP(); if(!cur[mod.id])cur[mod.id]=[]; if(e.target.checked){if(!cur[mod.id].includes(i))cur[mod.id].push(i)}else cur[mod.id]=cur[mod.id].filter(x=>x!=i); saveP(cur); render();};
+  list.appendChild(div);
+ });
+ document.getElementById('modal').style.display='block';
 }
 render();
 </script>
