@@ -1,61 +1,72 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Plateforme de formation numérique NDOUR TERANGA">
-<meta name="theme-color" content="#2563eb"><link rel="manifest" href="manifest.json"><link rel="stylesheet" href="styles.css">
-<title>NDOUR TERANGA — Formation Numérique</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ndour Teranga Formation - Parcours</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#f5f6f8}
+.header{display:flex;justify-content:space-between;padding:15px 5%;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.1);position:sticky;top:0}
+.logo{font-weight:900;color:#ff6b00;display:flex;align-items:center;gap:10px}
+.logo img{height:35px}
+.hero{display:flex;flex-wrap:wrap;padding:30px 5%;background:linear-gradient(135deg,#fff7ed,#e0f2fe);gap:20px;align-items:center}
+.hero h1{font-size:28px}.hero h1 span{color:#ff6b00}
+.hero img{width:220px;height:220px;object-fit:cover;border-radius:15px;border:4px solid #fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:15px;padding:20px 5%}
+.card{background:#fff;padding:15px;border-radius:12px;box-shadow:0 3px 10px rgba(0,0,0,.08);border-left:5px solid #ff6b00;cursor:pointer}
+.card:hover{transform:translateY(-3px)}
+.count{background:#fff7ed;color:#ff6b00;padding:3px 8px;border-radius:10px;font-size:12px;font-weight:700}
+.progress{height:6px;background:#eee;border-radius:10px;margin-top:8px;overflow:hidden}
+.progress div{height:100%;background:#00c950}
+.modal{display:none;position:fixed;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,.5);z-index:99}
+.modal-content{background:#fff;margin:5% auto;padding:20px;width:90%;max-width:600px;border-radius:12px;max-height:80vh;overflow:auto}
+.ex{display:flex;gap:10px;padding:8px;border-bottom:1px solid #eee}
+</style>
 </head>
 <body>
-<header><div class="container nav">
-<a class="brand" href="#accueil"><img src="assets/logo.svg" alt="NDOUR TERANGA"><span>NDOUR TERANGA</span></a>
-<nav class="navlinks"><button onclick="showPage('home')">Accueil</button><button onclick="showPage('courses')">Formations</button><button onclick="showPage('about')">À propos</button><button onclick="showPage('login')">Connexion</button></nav>
-<button class="btn btn-primary" onclick="showPage('courses')">Commencer</button>
-</div></header>
-
-<main id="app">
-<section id="home" class="page">
-<div class="hero"><div class="container hero-grid">
-<div><span class="eyebrow">FORMATION 100% EN LIGNE • SANS VIDÉO</span><h1>Apprends le numérique, étape par étape.</h1>
-<p>Une plateforme pensée pour les débutants : cours clairs, exercices pratiques, quiz, progression et certificat.</p>
-<div class="hero-actions"><button class="btn btn-primary" onclick="showPage('courses')">Voir les cours</button><button class="btn btn-soft" onclick="showPage('about')">Découvrir la méthode</button></div></div>
-<div><img class="hero-img" src="assets/hero-formateur.png" alt="Espace de formation numérique"></div>
-</div></div>
-
-<section><div class="container"><div class="section-head"><div><h2>Un parcours complet</h2><p>Du tout débutant jusqu'à un projet numérique concret.</p></div></div>
-<div class="grid">
-<div class="card"><div class="icon">💻</div><h3>Ordinateur</h3><p>Comprendre l'ordinateur, le clavier, la souris, les fichiers et les applications.</p></div>
-<div class="card"><div class="icon">📄</div><h3>Bureautique</h3><p>Word, Excel et PowerPoint avec des exercices directement applicables.</p></div>
-<div class="card"><div class="icon">🌐</div><h3>Internet & sécurité</h3><p>Recherche, e-mail, stockage, mots de passe et prévention contre les arnaques.</p></div>
-<div class="card"><div class="icon">🧩</div><h3>Création web</h3><p>Découvrir HTML et CSS et construire une première page web.</p></div>
-<div class="card"><div class="icon">🚀</div><h3>Compétences pro</h3><p>CV, documents professionnels, communication numérique et mini-projet.</p></div>
-<div class="card"><div class="icon">🏆</div><h3>Progression & certificat</h3><p>Valide les modules et retrouve ta progression dans ton espace étudiant.</p></div>
-</div></div></section>
-
-<section><div class="container about"><img class="portrait" src="assets/photo-formateur.jpg" alt="Photo du formateur">
-<div><span class="eyebrow">VOTRE FORMATEUR</span><h2>Une méthode simple et pratique</h2><p>Chaque leçon suit une logique claire : objectif, explication simple, étapes, exemple, exercice, correction puis quiz.</p>
-<ul class="checks"><li>Explications adaptées aux débutants</li><li>Exercices après chaque notion importante</li><li>Quiz avec correction et score</li><li>Suivi de progression dans l'espace étudiant</li><li>Certificat de fin de parcours</li></ul>
-<button class="btn btn-primary" onclick="showPage('courses')">Commencer la formation</button></div></div></section>
-</section>
-
-<section id="courses" class="page hidden"><div class="container"><div class="section-head"><div><h2>Mes formations</h2><p>Choisis un module et avance à ton rythme.</p></div></div><div id="courseList" class="grid"></div></div></section>
-
-<section id="lessonPage" class="page hidden"><div class="container"><button class="btn btn-soft" onclick="showPage('courses')">← Retour aux formations</button><div id="lessonContent"></div></div></section>
-
-<section id="about" class="page hidden"><div class="container"><div class="about"><img class="portrait" src="assets/photo-formateur.jpg" alt="Formateur"><div><span class="eyebrow">NDOUR TERANGA</span><h2>Formation numérique accessible</h2><p>La plateforme est conçue pour apprendre en pratiquant, sans dépendre de longues vidéos. Les notions sont découpées en petites étapes faciles à suivre.</p><p><strong>Objectif :</strong> permettre à chaque étudiant de progresser, pratiquer et construire des compétences utiles.</p></div></div></div></section>
-
-<section id="login" class="page hidden"><div class="container auth"><div class="authbox"><h2>Connexion étudiant</h2><p style="color:#64748b">Entre tes informations pour ouvrir ton espace.</p>
-<div class="field"><label>Nom</label><input id="loginName" placeholder="Ton nom"></div><div class="field"><label>E-mail</label><input id="loginEmail" type="email" placeholder="ton@email.com"></div>
-<button class="btn btn-primary" style="width:100%" onclick="login()">Ouvrir mon espace</button><p style="font-size:12px;color:#94a3b8;margin-top:15px">Pour la version en ligne avec comptes réels, une base de données et un serveur seront nécessaires.</p>
-</div></div></section>
-
-<section id="student" class="page hidden"><div class="container"><div class="section-head"><div><h2 id="welcome">Mon espace</h2><p>Ton tableau de bord d'apprentissage.</p></div><button class="btn btn-soft" onclick="logout()">Déconnexion</button></div>
-<div class="dashboard"><aside class="side"><button class="active" onclick="studentTab('dashboard',this)">📊 Tableau de bord</button><button onclick="studentTab('lessons',this)">📚 Mes cours</button><button onclick="studentTab('quiz',this)">🧠 Quiz</button><button onclick="studentTab('certificate',this)">🏆 Certificat</button></aside>
-<div id="studentContent"></div></div></div></section>
-
-<section id="admin" class="page hidden"><div class="container"><div class="section-head"><div><h2>Administration</h2><p>Gestion locale de contenu pour préparer la plateforme.</p></div></div><div class="notice">Cette version fonctionne côté navigateur. Pour une vraie administration multi-utilisateur en ligne, il faudra connecter une base de données et une authentification serveur.</div><div id="adminContent"></div></div></section>
-</main>
-
-<footer><div class="container footer-grid"><div><div class="footer-title">NDOUR TERANGA</div><div>Formation & compétences numériques.</div></div><div><div class="footer-title">Plateforme</div><div>Formations<br>Exercices<br>Quiz<br>Certificats</div></div><div><div class="footer-title">Accès</div><div>Étudiant<br>Administration</div></div></div></footer>
-<script src="app.js"></script>
-</body></html>
+<div class="header"><div class="logo"><img src="assets/logo.svg" onerror="this.src='logo.svg'"> NDOUR TERANGA</div><div>📞 +221 77 123 45 67</div></div>
+<div class="hero"><div><h1>Plateforme de Formation <span>comme Clic-Formation</span></h1><p>6 Parcours - 72 Exercices - Progression sauvegardée</p><p style="margin-top:10px">🖱️ Souris ⌨️ Clavier 📁 Fichiers 🌐 Internet 📝 Word 📊 Excel</p></div><img src="assets/photo-formateur.jpg" onerror="this.src='photo-formateur.jpg'"></div>
+<h2 style="text-align:center;margin-top:20px">Parcours d'auto-formation libre d'accès</h2>
+<div class="grid" id="grid"></div>
+<div id="modal" class="modal"><div class="modal-content"><span onclick="modal.style.display='none'" style="float:right;font-size:28px;cursor:pointer">&times;</span><h3 id="mtitle"></h3><div id="mlist"></div></div></div>
+<script>
+const parcours=[
+{id:'souris',t:'Débutant - Souris',c:12,i:'🖱️',d:'12 exercices souris',ex:['Simple clic','Double clic','Clic droit','Glisser-déposer','Sélection','Molette','Précision 1','Précision 2','Labyrinthe','Tri icônes','Puzzle','Examen']},
+{id:'clavier',t:'Clavier Niveau 1',c:12,i:'⌨️',d:'12 exercices clavier AZERTY',ex:['Lettres','Majuscules','Chiffres','Accents','Ponctuation','@ et €','Ctrl+C/V','Mot','Phrase','Vitesse 1','Vitesse 2','Test']},
+{id:'fichiers',t:'Fichiers & Dossiers',c:12,i:'📁',d:'Créer, déplacer, ranger',ex:['Créer dossier','Renommer','Copier','Couper','Corbeille','Rechercher','Zip','Clé USB','Explorateur','Arborescence','Propriétés','Rangement']},
+{id:'internet',t:'Internet & Mail',c:12,i:'🌐',d:'Recherche et messagerie',ex:['Google','Onglets','Historique','Favoris','Télécharger','Sécurité','Créer email','Pièce jointe','Répondre','Spam','Astuces','Test']},
+{id:'word',t:'WORD',c:15,i:'📝',d:'Initiation Word 1-3',ex:['Saisie','Mise en forme','Police','Alignement','Puces','Tableau','Image','En-tête','Sauvegarde','CV','Lettre','Mise en page','Table matières','Fusion','Examen']},
+{id:'excel',t:'EXCEL',c:12,i:'📊',d:'450 ex avec corrigés',ex:['Cellules','Somme','Moyenne','Si','Mise en forme cond','Tri','Filtre','Graphique','TCD','RechercheV','Budget','Examen']}
+];
+function getP(){return JSON.parse(localStorage.getItem('ndour')||'{}')}
+function saveP(p){localStorage.setItem('ndour',JSON.stringify(p))}
+function render(){
+let g=document.getElementById('grid');let prog=getP();g.innerHTML='';
+parcours.forEach(p=>{
+let done=(prog[p.id]||[]).length;let pct=Math.round(done/p.c*100);
+let div=document.createElement('div');div.className='card';
+div.innerHTML=`<div style="font-size:36px">${p.i}</div><h3>${p.t}</h3><span class="count">${done}/${p.c}</span><p style="font-size:13px;color:#666;margin:6px 0">${p.d}</p><div class="progress"><div style="width:${pct}%"></div></div><small>${pct}%</small>`;
+div.onclick=()=>openM(p);g.appendChild(div);
+});
+}
+function openM(p){
+let prog=getP();let set=new Set(prog[p.id]||[]);
+document.getElementById('mtitle').innerText=p.t;
+let l=document.getElementById('mlist');l.innerHTML='';
+p.ex.forEach((e,i)=>{
+let d=document.createElement('div');d.className='ex';
+d.innerHTML=`<input type="checkbox" ${set.has(i)?'checked':''}><span>${i+1}. ${e}</span><span style="margin-left:auto;color:#ff6b00">Faire →</span>`;
+d.querySelector('input').onchange=(ev)=>{
+let cur=getP();if(!cur[p.id])cur[p.id]=[];
+if(ev.target.checked){if(!cur[p.id].includes(i))cur[p.id].push(i)}else cur[p.id]=cur[p.id].filter(x=>x!=i);
+saveP(cur);render();
+};
+l.appendChild(d);
+});
+document.getElementById('modal').style.display='block';
+}
+render();
+</script>
+</body>
+</html>
